@@ -199,6 +199,55 @@ void deletionAtPosition(Node* &head, Node* &tail, int position){
     del->prev = NULL;
     delete del;
 }
+// Deletion by value
+void deletionByvalue(Node* &head, Node* &tail, int data){
+    if(head==NULL){
+        cout<<"Empty List"<<endl;
+        return;
+    }
+    // single node
+    if(head->next==NULL){
+        if(head->data==data){
+            delete head;
+            head = NULL;
+            return;
+        }
+        else{
+            cout<<"No node to delete"<<endl;
+            return;
+        }
+    }
+    // beginning node
+    if(head->data==data){
+        deleteAtBeg(head,tail);
+        return;
+    }
+    Node* temp = head->next;
+    Node* back = head;
+
+    while(temp!=NULL){
+        if(temp->data==data){
+            if(temp->next==NULL){
+                deleteAtEnd(head,tail);
+                return;
+            }
+            Node* delNode = temp;
+            back->next = temp->next;
+            temp->next->prev = temp->prev;
+            delNode->next=NULL;
+            delNode->prev = NULL;
+            delete delNode;
+            return;
+        }
+        temp = temp->next;
+        back = back->next;
+        if(temp==NULL){
+            cout<<"No node to delete"<<endl;
+            return;
+        }
+    }
+    cout<<"No node to delete"<<endl;
+}
 // *******************************PRINT*************************************
 void printList(Node* head){
     Node* temp = head;
@@ -242,6 +291,7 @@ int main(){
     // deleteAtBeg(head,tail);
     // deleteAtEnd(head,tail);
     // deletionAtPosition(head,tail,5);
+    // deletionByvalue(head,tail,15);
     printList(head);
     return 0;
 }

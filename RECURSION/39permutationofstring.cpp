@@ -18,10 +18,10 @@ void help(string str, vector<string>& str1, int index){
 
     for(int i=index;i<str.length();i++){
         swap(str[index],str[i]);
-        cout<<"Swapped"<<str<<" ";
+        // cout<<"Swapped"<<str<<" ";
         help(str,str1,index+1);
         swap(str[index],str[i]);
-        cout<<"Backtrack Swap"<<str<<" ";
+        // cout<<"Backtrack Swap"<<str<<" ";
     }
 }
 vector<string> permutations(string& str){
